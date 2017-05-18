@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Colour converter</title>
+  </head>
+</html>
+
+<body>
+  <p>RGB to Hex</p>
+  <input type="number" id="red">
+  <input type="number" id="green">
+  <input type="number" id="blue">
+  <input type="submit" value="Convert" id="r2h">
+
+  <p>Hex to RGB</p>
+  <input type="text" id="hex">
+  <input type="submit" value="Convert" id="h2r">
+
+  <script>
+    var url = 'https://pnh-todo-1.herokuapp.com/';
+    // var url = "http://localhost:3000/";
+    document.getElementById('r2h').addEventListener('click', function() {
+      let r = document.getElementById('red').value;
+      let g = document.getElementById('green').value;
+      let b = document.getElementById('blue').value;
+      let request = new XMLHttpRequest();
+      request.open('GET', url + 'rgbToHex?red=' + r + '&green=' + g + '&blue=' + b, true);
+      request.onload = function (e) {
+        alert(e.target.response);
+      };
+      request.send();
+    });
+
+    document.getElementById('h2r').addEventListener('click', function() {
+      let hex = document.getElementById('hex').value;
+      let request = new XMLHttpRequest();
+      request.open('GET', url + 'hexToRgb?hex=' + hex, true);
+      request.onload = function (e) {
+        alert(e.target.response);
+      };
+      request.send();
+    });
+  </script>
+</body>
